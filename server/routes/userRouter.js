@@ -13,7 +13,7 @@ router.post(
         check('password', 'Пароль должен быть не менее 3 символов').isLength({ min: 3, max: 100 }),
     ],
     userController.registartion,
-    console.log(33)
+
 );
 router.post('/login', userController.login);
 router.get('/', checkRole('admin'), userController.getUsers);
