@@ -1,0 +1,32 @@
+@import '../../../../styles/variables.scss';
+
+.input-auth{
+    width: 330px;
+    height: 40px;
+    position: relative;
+    background-color: $grayLight;
+    margin-bottom: 25px;
+    &__input{
+        height: 100%;
+        width: 100%;
+        padding-left: 40px;
+        outline: none;
+        border: 1px solid $grayColor;
+        background-color: transparent;
+        color: #141414;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+        &:focus{
+            border-color: red;
+        }
+    }
+    img{
+        position: absolute;
+        top: 50%;
+        left: 9px;
+        transform: translateY(-50%);
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
+}

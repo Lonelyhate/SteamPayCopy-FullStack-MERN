@@ -1,0 +1,18 @@
+.auth-page{
+    &__content{
+        width: 885px;
+        background-color: #fff;
+        padding: 30px;
+        margin: 30px auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__border{
+        margin: 35px 0 20px;
+        width: 330px;
+        height: 1px;
+        display: block;
+        background-color: #e1e2e3;
+    }
+}

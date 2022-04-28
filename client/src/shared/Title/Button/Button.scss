@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+
+.button{
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    &::after{
+        position: absolute;
+        content: '';
+        left: 0;
+        top: -100%;
+        width: 100%;
+        height: 40px;
+        background-color: $blackColor;
+        z-index: 2;
+        transition: top 0.3s ease;
+    }
+    &:hover{
+        &::after{
+            top: 0;
+        }
+    }
+    span{
+        position: relative;
+        z-index: 3;
+    }
+}
+
+.orange{
+    background: linear-gradient(90deg,#ff4148 0,#ff793a);
+}
+
+.blue{
+    background: #1896e6;
+}

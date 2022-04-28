@@ -71,7 +71,7 @@ class UserController {
 
     async auth(req, res) {
         try {
-            const token = generateJwt(req.user.id, req.user.email, req.user.role.value)
+            const token = generateJwt(req.user.id, req.user.email, req.user.role)
             console.log(req.user)
             return res.json({token})
         } catch(e) {
