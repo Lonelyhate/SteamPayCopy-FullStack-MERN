@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Dispatch } from 'react';
 import { UserAction, UserActionTypes } from '../types/user';
 import jwtDecode from 'jwt-decode';
-import { IError, IUser,  } from '../../types/types';
+import { IError, IUser } from '../../types/types';
 
 export const loginUser = (email: string, password: string) => {
     return async (dispatch: Dispatch<UserAction>) => {
@@ -37,9 +37,9 @@ export const auth = () => {
                 type: UserActionTypes.FETCH_USER_AUTH,
                 payload: jwtDecode(response.data.token),
             });
-            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('token', response.data.token);
         } catch (e) {
-            localStorage.removeItem('token')
+            localStorage.removeItem('token');
         }
     };
 };

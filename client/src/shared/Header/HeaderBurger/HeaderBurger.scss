@@ -1,0 +1,170 @@
+@import '../../../styles/variables.scss';
+.header-burger{
+    height: 76px;
+    width: 84px;
+    position: relative;
+    z-index: 8;
+    &__btn{
+        position: relative;
+        background-color: transparent;
+        border: none;
+        position: relative;
+        width: 84px;
+        cursor: pointer;
+        border-left: 1px solid #e1e2e3;
+        border-right: 1px solid #e1e2e3;
+        height: 100%;
+        background-color: $whiteDark;
+        display: block;
+        z-index: 7;
+        &::after{
+            content: '';
+            display: block;
+            width: 82px;
+            background: $linearGradientOrange;
+            height: 76px;
+            position: absolute;
+            top: -100%;
+            left: 0;
+            z-index: 2;
+            transition: top 0.3s ease;
+        }
+        &:hover{
+            &::after{
+                top: 0;
+            }
+            .header-burger__line{
+                background-color: #fff;
+                &::after,&::before{
+                    background-color: #fff;
+                }
+            }
+        }
+        &.active{
+            background: $linearGradientOrange;
+            .header-burger__line {
+                top: -100%;
+            }
+            .header-burger__cross{
+                top: 50%;
+            }
+
+        }
+    }
+
+    &__line{
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        display: block;
+        width: 23px;
+        height: 2px;
+        background-color: $blackColor;
+        z-index: 3;
+        transform: translate(-50%, -50%);
+        transition: top 0.3s ease;
+        &::after{
+            content: '';
+            display: block;
+            width: 23px;
+            height: 2px;
+            position: absolute;
+            bottom: -7px;
+            background-color: $blackColor;
+        }
+        &::before{
+            content: '';
+            display: block;
+            width: 23px;
+            height: 2px;
+            position: absolute;
+            top: -7px;
+            background-color: $blackColor;
+        }
+    }
+    &__cross{
+        top: -100%;
+        display: block;
+        height: 2px;
+        width: 30px;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 50%) rotate(-45deg);
+        z-index: 3;
+        transition: top 0.3s ease;
+        &::after{
+            content: '';
+            display: block;
+            height: 2px;
+            width: 30px;
+            position: absolute;
+            background-color: #fff;
+            top: 0;
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.burger-menu{
+    position: absolute;
+    z-index: 3;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    width: 440px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    &__list{
+        position: relative;
+        z-index: 3;
+        background-color: #fff;
+    }
+    &.active{
+        max-height: 295px;
+        &::after{
+            opacity: 1;
+            pointer-events: all;
+            visibility: visible;
+        }
+    }
+    &::after{
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    &__item{
+        position: relative;
+        z-index: 3;
+        &:not(:last-child):not(:first-child) {
+            border-bottom: 1px solid #e1e2e3;
+        }
+        &:first-child{
+            border-bottom: 1px solid #e1e2e3;
+        }
+    }
+    &__link{
+        display: block;
+        padding: 10px 27px;
+        text-decoration: none;
+        position: relative;
+        font-size: 16px;
+        color: #333;
+        transition: color 0.3s ease;
+        z-index: 3;
+        &:hover{
+            color: $orangeColor;
+            background-color: $grayLight;
+        }
+    }
+}

@@ -1,10 +1,10 @@
 import { IUser } from '../../types/types';
 
 export interface UserState {
-    currentUser: IUser | null;
+    currentUser: null | IUser;
     isAuth: boolean;
     loading: boolean;
-    error: null | string;
+    error: string | null;
 }
 
 export enum UserActionTypes {
@@ -29,12 +29,12 @@ interface FetchUserErrorAction {
 }
 
 interface FetchUserAuthAction {
-    type: UserActionTypes.FETCH_USER_AUTH,
-    payload: IUser
+    type: UserActionTypes.FETCH_USER_AUTH;
+    payload: IUser;
 }
 
 export type UserAction =
-    | FetchUserAuthAction
     | FetchUserAction
-    | FetchUserErrorAction
-    | FetchUserSuccessAction;
+    | FetchUserAuthAction
+    | FetchUserSuccessAction
+    | FetchUserErrorAction;

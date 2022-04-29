@@ -1,4 +1,8 @@
 .auth-page{
+    padding-top: 50px;
+    &__container{
+        width: 885px;
+    }
     &__content{
         width: 885px;
         background-color: #fff;

@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import AuthPage from './pages/authPage/AuthPage';
+import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { auth } from './redux/actions/user';
-import { AUTH_ROUTE, PROFILE_ROUTE } from './utils/constsPath';
+import Header from './shared/Header/Header';
+import { AUTH_ROUTE, HOME_ROTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from './utils/constsPath';
 
 function App() {
     const dispatch = useDispatch();
@@ -13,12 +15,21 @@ function App() {
 
     useEffect(() => {
         dispatch(auth());
-    }, );
+    }, []);
 
     return (
         <div className="App">
+            <Header />
             <Routes>
-                <Route path={AUTH_ROUTE} element={<AuthPage />} />
+                <Route path={HOME_ROTE} element={<HomePage />} />
+                {!isAuth ? (
+                    <>
+                        <Route path={AUTH_ROUTE} element={<AuthPage />} />
+                        <Route path={REGISTRATION_ROUTE} element={<AuthPage />} />
+                    </>
+                ) : (
+                    <Route path="*" element={<Navigate replace to={PROFILE_ROUTE} />} />
+                )}
                 <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
             </Routes>
         </div>
