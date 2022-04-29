@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Dispatch } from 'react';
 import { UserAction, UserActionTypes } from '../types/user';
 import jwtDecode from 'jwt-decode';
+import { IError, IUser,  } from '../../types/types';
 
 export const loginUser = (email: string, password: string) => {
     return async (dispatch: Dispatch<UserAction>) => {
@@ -17,10 +18,9 @@ export const loginUser = (email: string, password: string) => {
             });
             localStorage.setItem('token', response.data.token);
         } catch (e) {
-            console.log(e);
             dispatch({
                 type: UserActionTypes.FETCH_USER_ERROR,
-                payload: 'd',
+                payload: (e as IError).response.data.message,
             });
         }
     };

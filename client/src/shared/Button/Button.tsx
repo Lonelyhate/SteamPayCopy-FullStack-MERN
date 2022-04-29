@@ -3,7 +3,7 @@ import './Button.scss';
 
 interface ButtonProps {
     text: string;
-    background: string;
+    background: 'orange' | 'blue';
     width: number;
     click?: () => void
 }

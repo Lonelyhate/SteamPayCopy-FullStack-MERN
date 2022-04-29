@@ -19,14 +19,16 @@ export const userReducer = (state = initialState, action: UserAction): UserState
                 ...state,
                 loading: false,
                 currentUser: action.payload,
-                isAuth: true
+                isAuth: true,
+                error: null
             }
         case UserActionTypes.FETCH_USER_AUTH:
             return {
                 ...state,
                 loading: false,
                 currentUser: action.payload,
-                isAuth: true
+                isAuth: true,
+                error: null
             }
         case UserActionTypes.FETCH_USER_ERROR:
             return {
