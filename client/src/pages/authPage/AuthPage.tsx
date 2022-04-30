@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import Title from '../../shared/Title/Title';
 import './AuthPage.scss';
-import InputAuth from './components/InputAuth/InputAuth';
-import TitleAuth from './components/TitleAuth/TitleAuth';
+import InputAuth from '../../shared/InputAuth/InputAuth';
+import TitleAuth from '../../shared/TitleAuth/TitleAuth';
 import emailSvg from '../../assets/img/email-orange.svg';
 import passwordSvg from '../../assets/img/password-orange.svg';
 import Button from '../../shared/Button/Button';
@@ -33,8 +33,6 @@ const AuthPage: FC = () => {
         navigate(registration ? AUTH_ROUTE : REGISTRATION_ROUTE);
     };
 
-    console.log(isAuth);
-
     return (
         <div className="auth-page">
             <div className="container auth-page__container">
@@ -59,7 +57,7 @@ const AuthPage: FC = () => {
                         setData={setPassword}
                         svg={passwordSvg}
                     />
-                    <Button click={loginHandler} width={330} text="Войти" background="orange" />
+                    <Button click={loginHandler} width={330} text={registration ? 'Зарегистрироваться' : "Войти"} background="orange" />
                     <span className="auth-page__border"></span>
                     <TitleAuth title={registration ? "Уже есть аккаунт STEAMPAY?" : "Нет аккаунта STEAMPAY?"} />
                     <Button

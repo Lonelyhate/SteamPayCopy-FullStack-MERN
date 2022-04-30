@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import './Title.scss'
 
 interface TitleProps {
     title: string

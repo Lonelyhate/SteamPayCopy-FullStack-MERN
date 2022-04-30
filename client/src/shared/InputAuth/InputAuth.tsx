@@ -6,7 +6,7 @@ interface InputAuthProps {
     value: string;
     setData: (e: string) => void;
     placeholder: string;
-    svg: string
+    svg?: string;
 }
 
 const InputAuth: FC<InputAuthProps> = ({ type, value, setData, placeholder, svg }) => {
@@ -22,7 +22,7 @@ const InputAuth: FC<InputAuthProps> = ({ type, value, setData, placeholder, svg 
                 value={value}
                 onChange={changeEvent}
             />
-            <img src={svg} alt="email" />
+            {svg && <img src={svg} alt="email" />}
         </div>
     );
 };

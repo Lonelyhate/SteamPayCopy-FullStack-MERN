@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+
+.profile-page{
+    padding-top: 50px;
+    &__content{
+
+    }
+    &__left{
+        width: 885px;
+    }
+    &__top{
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 30px 36px;
+    }
+    &__avatar{
+        padding: 0 22px;
+        margin-right: 50px;
+    }
+    &__label-upload{
+        display: flex;
+        cursor: pointer;
+        margin-top: 15px;
+        img{
+            margin-right: 5px;
+            transform: translateY(2px);
+        }
+    }
+    &__upload-input{
+        display: none;
+    }
+}
