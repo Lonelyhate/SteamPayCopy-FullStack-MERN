@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import avatarImg from '../../assets/img/avatar.png'
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './Avatar.scss'
 
 interface AvatarProps {
@@ -8,9 +9,15 @@ interface AvatarProps {
 }
 
 const Avatar: FC<AvatarProps> = ({ height, width }) => {
+    const {currentUser} = useTypedSelector(state => state.user)
+    let avatarPath = currentUser?.avatar ? 'http://localhost:5000/' + currentUser.avatar : avatarImg 
+    if(currentUser?.avatar) {
+
+    }
+
     return (
         <div className="avatar" style={{ width: width, height: height }}>
-            <img src={avatarImg} alt="avatar" />
+            <img src={avatarPath} alt="avatar" />
         </div>
     );
 };

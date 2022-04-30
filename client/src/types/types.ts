@@ -1,6 +1,7 @@
 export interface IUser {
-    login: string;
+    email: string;
     password: string;
+    avatar: string
 }
 
 export interface IError {

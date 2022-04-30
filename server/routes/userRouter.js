@@ -16,6 +16,7 @@ router.post(
 
 );
 router.post('/login', userController.login);
+router.post('/avatar', authMiddleware, userController.uploadAvatar)
 router.get('/', checkRole('admin'), userController.getUsers);
 router.get('/auth', authMiddleware, userController.auth);
 

@@ -3,9 +3,11 @@ const Role = require('../models/Role');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
+const uuid = require('uuid');
+const path = require('path');
 
-const generateJwt = (id, email, role) => {
-    return jwt.sign({ id, email, role }, process.env.SECRET_KEY, { expiresIn: '30m' });
+const generateJwt = (id, email, role, avatar) => {
+    return jwt.sign({ id, email, role, avatar }, process.env.SECRET_KEY, { expiresIn: '30m' });
 };
 
 class UserController {
@@ -44,7 +46,7 @@ class UserController {
         try {
             const { email, password } = req.body;
             const user = await User.findOne({ email });
-           
+
             if (!user) {
                 return res.status(400).json({ message: 'Пользователь с таким email не найден' });
             }
@@ -53,8 +55,8 @@ class UserController {
             if (!passwordValid) {
                 return res.status(400).json({ message: 'Неправильно введен пароль' });
             }
-            const token = generateJwt(user._id, email, user.role);
-            return res.json({token});
+            const token = generateJwt(user._id, email, user.role, user.avatar);
+            return res.json({ token });
         } catch (e) {
             return res.status(400).json({ message: 'Request error' });
         }
@@ -62,20 +64,35 @@ class UserController {
 
     async getUsers(req, res) {
         try {
-            const users = await User.find()
-            return res.json(users)
-        } catch(e) {
-            return res.status(400).json({message: 'request error'})
+            const users = await User.find();
+            return res.json(users);
+        } catch (e) {
+            return res.status(400).json({ message: 'request error' });
         }
     }
 
     async auth(req, res) {
         try {
-            const token = generateJwt(req.user.id, req.user.email, req.user.role)
-            console.log(req.user)
-            return res.json({token})
-        } catch(e) {
-            return res.status(400).json({message: 'server error'})
+            const token = generateJwt(req.user.id, req.user.email, req.user.role, req.user.avatar);
+
+            return res.json({ token });
+        } catch (e) {
+            return res.status(400).json({ message: 'server error' });
+        }
+    }
+
+    async uploadAvatar(req, res) {
+        try {
+            const { img } = req.files;
+            const user = await User.findById(req.user.id);
+            const avatarName = uuid.v4() + '.jpg';
+            console.log(avatarName)
+            img.mv(path.resolve(__dirname, '..', 'static', avatarName));
+            user.avatar = avatarName
+            await user.save()
+            return res.json(user)
+        } catch (e) {
+            return res.status(400).json({ message: 'Error upload avatar' });
         }
     }
 }
