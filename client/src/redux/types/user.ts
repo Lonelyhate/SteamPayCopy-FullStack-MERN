@@ -37,4 +37,4 @@ export type UserAction =
     | FetchUserAction
     | FetchUserAuthAction
     | FetchUserSuccessAction
-    | FetchUserErrorAction;
+    | FetchUserErrorAction

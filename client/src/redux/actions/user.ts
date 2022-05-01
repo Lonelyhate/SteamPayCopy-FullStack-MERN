@@ -43,3 +43,26 @@ export const auth = () => {
         }
     };
 };
+
+export const uploadAvatar = (img: any) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.FETCH_USER });
+            const formData = new FormData();
+            formData.append('img', img);
+            const response = await axios.post('http://localhost:5000/api/user/avatar', formData, {
+                headers: { Authorization: `bearer ${localStorage.getItem('token')}` },
+            });
+            localStorage.setItem('token', response.data.token)
+            dispatch({
+                type: UserActionTypes.FETCH_USER_SUCCESS,
+                payload: jwtDecode(response.data.token)
+            });
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message,
+            });
+        }
+    };
+};

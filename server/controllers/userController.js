@@ -90,7 +90,8 @@ class UserController {
             img.mv(path.resolve(__dirname, '..', 'static', avatarName));
             user.avatar = avatarName
             await user.save()
-            return res.json(user)
+            const token = generateJwt(user.id, user.email, user.role, user.avatar)
+            return res.json({token})
         } catch (e) {
             return res.status(400).json({ message: 'Error upload avatar' });
         }

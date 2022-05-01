@@ -10,8 +10,11 @@ import passwordSvgOrange from '../../assets/img/password-orange.svg';
 import passwordSvgBlue from '../../assets/img/password-blue.svg';
 import emailSvg from '../../assets/img/email-orange.svg';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useDispatch } from 'react-redux';
+import {uploadAvatar} from '../../redux/actions/user'
 
 const ProfilePage = () => {
+    const dispatch = useDispatch()
     const { currentUser } = useTypedSelector((state) => state.user);
     const [nickname, setNickname] = useState<string>('');
     const [oldPassword, setOldPassword] = useState<string>('');
@@ -19,6 +22,10 @@ const ProfilePage = () => {
     const [confirmedPassword, setConfirmedPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [confirmedEmail, setConfirmedEmail] = useState<string>('');
+    const uploadAvatarOnProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const img = e.target.files?.[0]
+        dispatch(uploadAvatar(img))
+    }
 
     return (
         <section className="profile-page">
@@ -33,6 +40,8 @@ const ProfilePage = () => {
                                     <img src={uploadSvg} alt="upload" /> Изменить аватар
                                 </label>
                                 <input
+                                    accept='image/*'
+                                    onChange={uploadAvatarOnProfile}
                                     className="profile-page__upload-input"
                                     id="avatar"
                                     type="file"
