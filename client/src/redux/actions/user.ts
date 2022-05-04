@@ -26,6 +26,28 @@ export const loginUser = (email: string, password: string) => {
     };
 };
 
+export const registrationUser = (email: string, password: string) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.FETCH_USER });
+            const response = await axios.post('http://localhost:5000/api/user/registration', {
+                email,
+                password,
+            });
+            dispatch({
+                type: UserActionTypes.FETCH_USER_SUCCESS,
+                payload: jwtDecode(response.data.token),
+            });
+            localStorage.setItem('token', response.data.token);
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message
+            })
+        }
+    };
+};
+
 export const auth = () => {
     return async (dispatch: Dispatch<UserAction>) => {
         try {
@@ -42,8 +64,8 @@ export const auth = () => {
             localStorage.removeItem('token');
             dispatch({
                 type: UserActionTypes.FETCH_USER_ERROR,
-                payload: (e as IError).response.data.message
-            })
+                payload: (e as IError).response.data.message,
+            });
         }
     };
 };
@@ -163,5 +185,11 @@ export const changeNickname = (nickname: string) => {
                 payload: (e as IError).response.data.message,
             });
         }
+    };
+};
+
+export const logoutUser = () => {
+    return (dispatch: Dispatch<UserAction>) => {
+        dispatch({ type: UserActionTypes.LOGOUT_USER });
     };
 };

@@ -2,6 +2,7 @@ export interface IUser {
     email: string;
     password: string;
     avatar: string
+    nickname: string
 }
 
 export interface IError {
@@ -54,3 +55,20 @@ export type BurgerMenu = {
         | BurgerItemLink.BONUS_PROGRAM
         | BurgerItemLink.PERSONAL_AREA;
 };
+
+export enum ProfileMenuName {
+    SETTINGS = 'Настройки',
+    PARTNER = 'Партнерская программа',
+    PURCHASE = 'Мои покупки',
+}
+
+export enum ProfileMunuLink {
+    SETTINGS = '/settings',
+    PARTNER = '/partner',
+    PURCHASE = '/purchase',
+}
+
+export type ProfileMunu = {
+    name: ProfileMenuName.SETTINGS | ProfileMenuName.PARTNER | ProfileMenuName.PURCHASE
+    link: ProfileMunuLink.SETTINGS | ProfileMunuLink.PARTNER | ProfileMunuLink.PURCHASE
+}

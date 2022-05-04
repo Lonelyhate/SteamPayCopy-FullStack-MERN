@@ -1,0 +1,87 @@
+@import '../../../../styles/variables.scss';
+
+.profile-right{
+    margin-top: 65px;
+    &__header{
+        padding-left: 20px;
+    }
+    &__welcome{
+        margin-top: 15px;
+        color: #616161;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    &__item{
+        &:not(:first-child) {
+            border-top: 1px solid #dedede;
+        }
+        &:first-child{
+            button{
+                background: url('../../../../assets/img/settingsOrange.svg') center no-repeat;
+                background-position-x: 20px;
+                background-position-y: 18px;
+                &:hover{
+                    background: url('../../../../assets/img/settingsBlue.svg') center no-repeat;
+                    background-position-x: 20px;
+                    background-position-y: 18px;
+                }
+            }
+        }
+        &:nth-child(2){
+            button{
+                background: url('../../../../assets/img/partnerOrange.svg') center no-repeat;
+                background-position-x: 20px;
+                background-position-y: 20px;
+                &:hover{
+                    background: url('../../../../assets/img/partnerBlue.svg') center no-repeat;
+                    background-position-x: 20px;
+                    background-position-y: 20px;
+                }
+            }
+        }
+        &:nth-child(3){
+            button{
+                background: url('../../../../assets/img/historyOrange.svg') center no-repeat;
+                background-position-x: 20px;
+                background-position-y: 22px;
+                &:hover{
+                    background: url('../../../../assets/img/historyProfileBlue.svg') center no-repeat;
+                    background-position-x: 20px;
+                    background-position-y: 22px;
+                }
+            }
+        }
+    }
+    &__link{
+        display: inline-block;
+        width: 100%;
+        padding: 20px 20px 20px 50px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #616161;
+        transition: color 0.3s ease;
+        &:hover{
+            color: $colorBlue;
+        }
+    }
+    &__btn{
+        width: 100%;
+        padding: 20px 20px 20px 50px;
+        font-size: 16px;
+        color: #616161;
+        transition: color 0.3s ease;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        text-align: left;
+        background: url('../../../../assets/img/logoutOrange.svg') center no-repeat;
+        background-position-x: 20px;
+        background-position-y: 21px;
+        &:hover{
+            color: $colorBlue;
+            background: url('../../../../assets/img/logoutBlue.svg') center no-repeat;
+            background-position-x: 20px;
+            background-position-y: 21px;
+        }
+    }
+}

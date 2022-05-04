@@ -1,0 +1,25 @@
+@import '../../../../../styles/variables.scss';
+
+.partner-item{
+    display: flex;
+    &__img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        background: $linearGradientOrange;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        margin-right: 34px;
+    }
+    &__title{
+        font-size: 19px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    &__description{
+        font-size: 16px;
+    }
+}

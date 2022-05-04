@@ -1,25 +1,32 @@
 const Router = require('express');
 const userController = require('../controllers/userController');
 const router = new Router();
-const { check } = require('express-validator');
+const { body } = require('express-validator');
 const authMiddleware = require('../middlewares/authMiddleware');
 const checkRole = require('../middlewares/checkRoleMiddleware');
 
 router.post(
     '/registration',
     [
-        check('email', 'Неккоректная почта').isEmail(),
-        check('email', 'Email не может быть пустым').notEmpty(),
-        check('password', 'Пароль должен быть не менее 3 символов').isLength({ min: 3, max: 100 }),
+        body('email', 'Некорректная почта').isEmail(),
+        body('password', 'Пароль должен быть не менее 6 символов').isLength({ min: 6, max: 100 }),
     ],
     userController.registartion,
-
 );
 router.post('/login', userController.login);
-router.post('/avatar', authMiddleware, userController.uploadAvatar)
+router.post('/avatar', authMiddleware, userController.uploadAvatar);
 router.get('/', checkRole('admin'), userController.getUsers);
 router.get('/auth', authMiddleware, userController.auth);
-router.delete('/avatar', authMiddleware, userController.deleteAvatar)
-router.put('/:change', authMiddleware, userController.userChange)
+router.delete('/avatar', authMiddleware, userController.deleteAvatar);
+router.put(
+    '/:change',
+    [
+        body('email', 'Некорректная почти').isEmail(),
+        body('password', 'Пароль должен быть не менее 6 символов').isLength({ min: 6, max: 100 }),
+        body('nickname', 'Никнейм должен быть не менее 3 символов').isLength({ min: 3, max: 25 }),
+    ],
+    authMiddleware,
+    userController.userChange,
+);
 
 module.exports = router;

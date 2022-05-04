@@ -19,11 +19,12 @@ class UserController {
             const errors = validationResult(req);
             const { email, password } = req.body;
             if (!email || !password) {
-                return res.status(400).json({ message: 'Неккоректные данные' });
+                return res.status(400).json({ message: 'Некорректные данные' });
             }
 
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors });
+                console.log(errors.array()[0])
+                return res.status(400).json({message: errors.array()[0].msg});
             }
 
             const candidate = await User.findOne({ email });
@@ -87,7 +88,7 @@ class UserController {
 
             return res.json({ token });
         } catch (e) {
-            return res.status(400).json({ message: 'server error' });
+            return res.status(500).json({ message: 'server error' });
         }
     }
 
@@ -126,8 +127,12 @@ class UserController {
             const user = await User.findById(req.user.id);
             const change = req.params.change;
             let token;
+            const errors = validationResult(req).mapped()
             switch (change) {
                 case 'email':
+                    if(errors.email) {
+                        return res.status(400).json({message: errors.email.msg})
+                    }
                     if (email === user.email) {
                         return res.status(400).json({ message: 'Email не изменен' });
                     }
@@ -142,6 +147,9 @@ class UserController {
                     );
                     return res.json({ token });
                 case 'password':
+                    if(errors.password) {
+                        return res.status(400).json({message: errors.password.msg})
+                    }
                     const newPasswordHash = bcrypt.hashSync(newPassword, 5);
                     const validPassword = bcrypt.compareSync(password, user.password);
                     if (!validPassword) {
@@ -152,6 +160,9 @@ class UserController {
                     token = generateJwt(user.id, user.email, user.role, user.avatar, user.nickname);
                     return res.json({ token });
                 case 'nickname':
+                    if(errors.nickname) {
+                        return res.status(400).json({message: errors.nickname.msg})
+                    }
                     if (nickname === user.nickname) {
                         return res.status(400).json({ message: 'Никнейм не изменен' });
                     }

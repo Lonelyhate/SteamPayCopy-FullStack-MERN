@@ -3,65 +3,10 @@
 .profile-page{
     padding-top: 50px;
     &__content{
-
-    }
-    &__left{
-        width: 885px;
-    }
-    &__top{
-        background-color: #fff;
         display: flex;
-        align-items: center;
-        padding: 30px 36px;
-    }
-    &__avatar{
-        padding: 0 22px;
-        margin-right: 50px;
-    }
-    &__label-upload{
-        display: flex;
-        cursor: pointer;
-        margin-top: 15px;
-        img{
-            margin-right: 5px;
-            transform: translateY(2px);
-        }
-    }
-    &__upload-input{
-        display: none;
-    }
-    &__bottom{
-        background-color: #fff;
-        width: 885px;
-        margin-top: 10px;
-        display: flex;
-        padding: 30px 36px;
-    }
-    &__password{
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-right: 1px solid #e6e6e6;
-    }
-    &__email{
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    &__text{
-        margin-bottom: 20px;
-    }
-    &__delete-avatar{
-        padding: 0;
-        background: transparent;
-        border: none;
-        display: flex;
-        margin: 5px auto 0;
-        font-size: 15px;
-        color: rgb(195, 1, 1);
-        cursor: pointer;
     }
     
 }
+
+
+

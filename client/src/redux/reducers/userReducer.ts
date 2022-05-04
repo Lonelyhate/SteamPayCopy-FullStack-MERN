@@ -13,7 +13,6 @@ export const userReducer = (state = initalState, action: UserAction): UserState 
             return {
                 ...state,
                 error: null,
-                isAuth: false,
                 loading: true,
             };
         case UserActionTypes.FETCH_USER_SUCCESS:
@@ -36,8 +35,15 @@ export const userReducer = (state = initalState, action: UserAction): UserState 
             return {
                 ...state,
                 error: action.payload,
-                isAuth: false,
                 loading: false
+            }
+        case UserActionTypes.LOGOUT_USER:
+            localStorage.removeItem('token')
+            return {
+                ...state,
+                loading: false,
+                currentUser: null,
+                isAuth: false
             }
         default:
             return state;

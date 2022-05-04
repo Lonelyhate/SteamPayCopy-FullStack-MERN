@@ -6,7 +6,7 @@ import TitleAuth from '../../shared/TitleAuth/TitleAuth';
 import emailSvg from '../../assets/img/email-orange.svg';
 import passwordSvg from '../../assets/img/password-orange.svg';
 import Button from '../../shared/Button/Button';
-import { auth, loginUser } from '../../redux/actions/user';
+import { auth, loginUser, registrationUser } from '../../redux/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -30,8 +30,14 @@ const AuthPage: FC = () => {
             setMessage('Заполните все поля');
             setVisableMessage(true)
         } else {
-            dispatch(loginUser(email, password));
-            setVisableMessage(true)
+            if(registration) {
+                dispatch(registrationUser(email, password))
+                setVisableMessage(true)
+            } else {
+                dispatch(loginUser(email, password));
+                setVisableMessage(true)
+            }
+            
         }
     };
 

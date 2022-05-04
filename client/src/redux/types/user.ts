@@ -4,7 +4,7 @@ export interface UserState {
     currentUser: null | IUser;
     isAuth: boolean;
     loading: boolean;
-    error: string | null;
+    error: string | null ;
 }
 
 export enum UserActionTypes {
@@ -12,6 +12,7 @@ export enum UserActionTypes {
     FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS',
     FETCH_USER_ERROR = 'FETCH_USER_ERROR',
     FETCH_USER_AUTH = 'FETCH_USER_AUTH',
+    LOGOUT_USER = 'LOGOUT_USER',
 }
 
 interface FetchUserAction {
@@ -33,8 +34,13 @@ interface FetchUserAuthAction {
     payload: IUser;
 }
 
+interface LogoutUser {
+    type: UserActionTypes.LOGOUT_USER;
+}
+
 export type UserAction =
     | FetchUserAction
     | FetchUserAuthAction
     | FetchUserSuccessAction
     | FetchUserErrorAction
+    | LogoutUser;
