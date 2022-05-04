@@ -40,6 +40,10 @@ export const auth = () => {
             localStorage.setItem('token', response.data.token);
         } catch (e) {
             localStorage.removeItem('token');
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message
+            })
         }
     };
 };
@@ -53,10 +57,105 @@ export const uploadAvatar = (img: any) => {
             const response = await axios.post('http://localhost:5000/api/user/avatar', formData, {
                 headers: { Authorization: `bearer ${localStorage.getItem('token')}` },
             });
-            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('token', response.data.token);
             dispatch({
                 type: UserActionTypes.FETCH_USER_SUCCESS,
-                payload: jwtDecode(response.data.token)
+                payload: jwtDecode(response.data.token),
+            });
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message,
+            });
+        }
+    };
+};
+
+export const deleteAvatar = () => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.FETCH_USER });
+            const response = await axios.delete('http://localhost:5000/api/user/avatar', {
+                headers: { Authorization: `bearer ${localStorage.getItem('token')}` },
+            });
+            localStorage.setItem('token', response.data.token);
+            dispatch({
+                type: UserActionTypes.FETCH_USER_SUCCESS,
+                payload: jwtDecode(response.data.token),
+            });
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message,
+            });
+        }
+    };
+};
+
+export const changeEmail = (newEmail: string) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.FETCH_USER });
+            const response = await axios.put(
+                'http://localhost:5000/api/user/email',
+                { email: newEmail },
+                {
+                    headers: { Authorization: `bearer ${localStorage.getItem('token')}` },
+                },
+            );
+            localStorage.setItem('token', response.data.token);
+            dispatch({
+                type: UserActionTypes.FETCH_USER_SUCCESS,
+                payload: jwtDecode(response.data.token),
+            });
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message,
+            });
+        }
+    };
+};
+
+export const changePassword = (password: string, newPassword: string) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.FETCH_USER });
+            const response = await axios.put(
+                'http://localhost:5000/api/user/password',
+                { password, newPassword },
+                {
+                    headers: { Authorization: `bearer ${localStorage.getItem('token')}` },
+                },
+            );
+            localStorage.setItem('token', response.data.token);
+            dispatch({
+                type: UserActionTypes.FETCH_USER_SUCCESS,
+                payload: jwtDecode(response.data.token),
+            });
+        } catch (e) {
+            dispatch({
+                type: UserActionTypes.FETCH_USER_ERROR,
+                payload: (e as IError).response.data.message,
+            });
+        }
+    };
+};
+
+export const changeNickname = (nickname: string) => {
+    return async (dispatch: Dispatch<UserAction>) => {
+        try {
+            dispatch({ type: UserActionTypes.FETCH_USER });
+            const response = await axios.put(
+                'http://localhost:5000/api/user/nickname',
+                { nickname },
+                {
+                    headers: { Authorization: `bearer ${localStorage.getItem('token')}` },
+                },
+            );
+            dispatch({
+                type: UserActionTypes.FETCH_USER_SUCCESS,
+                payload: jwtDecode(response.data.token),
             });
         } catch (e) {
             dispatch({

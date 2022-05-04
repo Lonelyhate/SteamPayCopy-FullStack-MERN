@@ -12,7 +12,6 @@ export const userReducer = (state = initalState, action: UserAction): UserState 
         case UserActionTypes.FETCH_USER:
             return {
                 ...state,
-                currentUser: null,
                 error: null,
                 isAuth: false,
                 loading: true,
@@ -36,7 +35,6 @@ export const userReducer = (state = initalState, action: UserAction): UserState 
         case UserActionTypes.FETCH_USER_ERROR:
             return {
                 ...state,
-                currentUser: null,
                 error: action.payload,
                 isAuth: false,
                 loading: false

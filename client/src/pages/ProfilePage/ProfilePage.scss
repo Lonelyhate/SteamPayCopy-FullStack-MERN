@@ -53,4 +53,15 @@
     &__text{
         margin-bottom: 20px;
     }
+    &__delete-avatar{
+        padding: 0;
+        background: transparent;
+        border: none;
+        display: flex;
+        margin: 5px auto 0;
+        font-size: 15px;
+        color: rgb(195, 1, 1);
+        cursor: pointer;
+    }
+    
 }

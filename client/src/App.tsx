@@ -28,9 +28,13 @@ function App() {
                         <Route path={REGISTRATION_ROUTE} element={<AuthPage />} />
                     </>
                 ) : (
-                    <Route path="*" element={<Navigate replace to={PROFILE_ROUTE} />} />
+                    <Route path={AUTH_ROUTE} element={<Navigate replace to={PROFILE_ROUTE} />} />
                 )}
-                <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
+                {isAuth ? (
+                    <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
+                ) : (
+                    <Route path={PROFILE_ROUTE} element={<Navigate replace to={AUTH_ROUTE} />} />
+                )}
             </Routes>
         </div>
     );

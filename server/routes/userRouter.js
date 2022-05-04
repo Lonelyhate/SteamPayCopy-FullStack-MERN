@@ -19,5 +19,7 @@ router.post('/login', userController.login);
 router.post('/avatar', authMiddleware, userController.uploadAvatar)
 router.get('/', checkRole('admin'), userController.getUsers);
 router.get('/auth', authMiddleware, userController.auth);
+router.delete('/avatar', authMiddleware, userController.deleteAvatar)
+router.put('/:change', authMiddleware, userController.userChange)
 
 module.exports = router;
