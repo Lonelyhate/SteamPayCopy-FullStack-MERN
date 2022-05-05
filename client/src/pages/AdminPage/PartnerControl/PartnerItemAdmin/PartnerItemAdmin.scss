@@ -1,0 +1,39 @@
+@import '../../../../styles/variables.scss';
+
+.partner-item-admin{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 10px 0;
+    &:not(:first-child) {
+        border-top: 1px solid #e1e2e3;
+    }
+    &__title{
+        justify-self: center;
+        font-size: 15px;
+        text-align: center;
+        font-weight: 500;
+    }
+    &__img{
+        width: 75px;
+        height: 75px;
+        background: $linearGradientOrange;
+        justify-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    &__descr{
+        font-size: 14px;
+        max-height: 100px;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+    time{
+        font-size: 12px;
+        justify-self: center;
+    }
+    &__btns{
+
+    }
+}

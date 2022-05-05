@@ -1,8 +1,11 @@
+
 export interface IUser {
+    id: number
     email: string;
     password: string;
-    avatar: string
-    nickname: string
+    avatar: string;
+    nickname: string;
+    role: 'admin' | 'user';
 }
 
 export interface IError {
@@ -11,6 +14,14 @@ export interface IError {
         status: number;
         statusText: string;
     };
+}
+
+export interface IPartnerItem {
+    id: number
+    title: string
+    description: string
+    image: string
+    date: string
 }
 
 export enum BurgerItemName {
@@ -69,6 +80,14 @@ export enum ProfileMunuLink {
 }
 
 export type ProfileMunu = {
-    name: ProfileMenuName.SETTINGS | ProfileMenuName.PARTNER | ProfileMenuName.PURCHASE
-    link: ProfileMunuLink.SETTINGS | ProfileMunuLink.PARTNER | ProfileMunuLink.PURCHASE
+    name: ProfileMenuName.SETTINGS | ProfileMenuName.PARTNER | ProfileMenuName.PURCHASE;
+    link: ProfileMunuLink.SETTINGS | ProfileMunuLink.PARTNER | ProfileMunuLink.PURCHASE;
+};
+
+export enum AdminContentMenuName {
+    PARTNER = 'Партнерская программа',
 }
+
+export type AdminMenuAside = {
+    content: [{ name: AdminContentMenuName.PARTNER; img: any }];
+};

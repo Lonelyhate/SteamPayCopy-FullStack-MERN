@@ -2,16 +2,25 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypedSelector } from './hooks/useTypedSelector';
+import AdminMenu from './pages/AdminPage/AdminMenu/AdminMenu';
+import AdminPage from './pages/AdminPage/AdminPage';
 import AuthPage from './pages/authPage/AuthPage';
 import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { auth } from './redux/actions/user';
 import Header from './shared/Header/Header';
-import { AUTH_ROUTE, HOME_ROTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from './utils/constsPath';
+import {
+    ADMIN_ROUTE,
+    AUTH_ROUTE,
+    HOME_ROTE,
+    PROFILE_ROUTE,
+    REGISTRATION_ROUTE,
+} from './utils/constsPath';
 
 function App() {
     const dispatch = useDispatch();
-    const { isAuth } = useTypedSelector((state) => state.user);
+    const { isAuth, currentUser } = useTypedSelector((state) => state.user);
+    const role = currentUser?.role;
 
     useEffect(() => {
         dispatch(auth());
@@ -40,7 +49,10 @@ function App() {
                     </>
                 )}
                 {isAuth ? (
-                    <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
+                    <>
+                        <Route path={PROFILE_ROUTE} element={<ProfilePage />} />
+                        {role === 'admin' && <Route path={ADMIN_ROUTE} element={<AdminPage />} />}
+                    </>
                 ) : (
                     <Route path={PROFILE_ROUTE} element={<Navigate replace to={AUTH_ROUTE} />} />
                 )}

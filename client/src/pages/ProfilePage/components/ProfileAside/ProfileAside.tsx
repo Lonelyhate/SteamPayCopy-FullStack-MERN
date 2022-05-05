@@ -3,10 +3,11 @@ import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import Avatar from '../../../../shared/Avatar/Avatar';
 import './ProfileAside.scss';
 import { Link } from 'react-router-dom';
-import { PROFILE_ROUTE } from '../../../../utils/constsPath';
+import { ADMIN_ROUTE, PROFILE_ROUTE } from '../../../../utils/constsPath';
 import { ProfileMenuName, ProfileMunu, ProfileMunuLink } from '../../../../types/types';
 import { logoutUser } from '../../../../redux/actions/user';
 import { useDispatch } from 'react-redux';
+import {GrUserAdmin} from 'react-icons/gr'
 
 const profileMunu: ProfileMunu[] = [
     {
@@ -24,12 +25,14 @@ const profileMunu: ProfileMunu[] = [
 ];
 
 interface PofileAsideProps {
-    setId: (id: number) => void
+    setId: (id: number) => void;
 }
 
-const ProfileAside:FC<PofileAsideProps> = ({setId}) => {
-    const {currentUser} = useTypedSelector(state => state.user)
-    const dispatch = useDispatch()
+const ProfileAside: FC<PofileAsideProps> = ({ setId }) => {
+    const { currentUser } = useTypedSelector((state) => state.user);
+    const role = currentUser?.role;
+    console.log(role);
+    const dispatch = useDispatch();
 
     return (
         <aside className="profile-page__right profile-right">
@@ -48,8 +51,19 @@ const ProfileAside:FC<PofileAsideProps> = ({setId}) => {
                             </button>
                         </li>
                     ))}
+                    {role === 'admin' && (
+                        <li className="profile-right__item">
+                            <Link className='profile-right__link' to={ADMIN_ROUTE}><GrUserAdmin /> Админка</Link>
+                        </li>
+                    )}
                     <li className="profile-right__item">
-                        <button onClick={() => {dispatch(logoutUser())}} className="profile-right__btn">Выход</button>
+                        <button
+                            onClick={() => {
+                                dispatch(logoutUser());
+                            }}
+                            className="profile-right__btn">
+                            Выход
+                        </button>
                     </li>
                 </ul>
             </nav>
