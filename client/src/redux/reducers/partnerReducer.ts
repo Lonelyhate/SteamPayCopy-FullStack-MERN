@@ -27,8 +27,8 @@ export const partnerReducer = (state = initialState, action: PartnerAction): Par
         case PartnerActionTypes.PARTNER_REMOVE:
             return {
                 ...state,
-                partners: state.partners.filter(item => item.id !== action.payload)
-            }
+                partners: [...state.partners.filter((item) => item._id != action.payload)]
+            };
         case PartnerActionTypes.FETCH_PARTNER_ERROR:
             return {
                 ...state,

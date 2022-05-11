@@ -39,7 +39,7 @@ class UserController {
             const userRole = await Role.findOne({ value: 'user' });
             const user = new User({ email, password: hashPassword, role: userRole.value });
             await user.save();
-            const token = generateJwt(user._id, email, userRole);
+            const token = generateJwt(user._id, email, userRole.value);
             return res.json({ token });
         } catch (e) {
             return res.status(400).json({ message: 'Requset error' });

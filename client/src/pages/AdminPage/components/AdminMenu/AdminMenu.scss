@@ -1,4 +1,4 @@
-@import '../../../styles/variables.scss';
+@import '../../../../styles/variables.scss';
 
 .admin-menu{
     background-color: #fff;
@@ -37,6 +37,12 @@
         align-items: center;
         border: none;
         transition: color 0.3s ease;
+        &.active{
+            color: $colorBlue;
+            svg{
+                fill: $colorBlue;
+            }
+        }
         &:hover{
             color: $colorBlue;
             svg{

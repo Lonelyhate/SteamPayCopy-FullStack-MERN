@@ -1,9 +1,9 @@
 @import '../../../../styles/variables.scss';
 
-.partner-item-admin{
+.item-control{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    padding: 10px 0;
+    padding: 15px 0;
     &:not(:first-child) {
         border-top: 1px solid #e1e2e3;
     }
@@ -34,6 +34,28 @@
         justify-self: center;
     }
     &__btns{
-
+        display: flex;
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            padding: 0 12px;
+            color: #fff;
+            svg{
+                margin-right: 3px;
+            }
+        }
     }
+    &__edit{
+        background-color: $colorBlue;
+        margin-right: 10px;
+    }
+    &__delete{
+        background-color: $orangeColor;
+    }
+
 }

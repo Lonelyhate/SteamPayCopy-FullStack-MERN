@@ -1,8 +1,13 @@
-.profile-partner{
-    width: 885px;
+.garant-page{
+    padding-top: 50px;
+    &__content{
+        display: flex;
+    }
     &__list{
-        padding: 30px 36px;
+        width: 885px;
+        flex-shrink: 0;
         background-color: #fff;
+        padding: 0 36px;
     }
     &__item{
         &:not(:first-child) {

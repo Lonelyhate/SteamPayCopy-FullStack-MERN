@@ -1,7 +1,7 @@
-import { IPartnerItem } from '../../types/types';
+import { IControlItem } from '../../types/types';
 
 export interface PartnerState {
-    partners: IPartnerItem[];
+    partners: IControlItem[];
     loading: boolean;
     error: null | string;
 }
@@ -20,7 +20,7 @@ interface FetchPartnerAction {
 
 interface FetchPartnerSuccessAction {
     type: PartnerActionTypes.FETCH_PARTNER_SUCCESS;
-    payload: IPartnerItem[];
+    payload: IControlItem[];
 }
 
 interface FetchPartnerErrorAction {
@@ -30,12 +30,12 @@ interface FetchPartnerErrorAction {
 
 interface PartnerAddAction {
     type: PartnerActionTypes.PARTNER_ADD;
-    payload: IPartnerItem;
+    payload: IControlItem;
 }
 
 interface PartnerRemoveAction {
     type: PartnerActionTypes.PARTNER_REMOVE;
-    payload: number;
+    payload: string;
 }
 
 export type PartnerAction =

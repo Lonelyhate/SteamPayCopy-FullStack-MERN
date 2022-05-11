@@ -1,45 +1,48 @@
 import React, { FC, useState } from 'react';
-import './PartnerModal.scss';
+import './ModalControl.scss'
 import { GrClose } from 'react-icons/gr';
 import { addPartner } from '../../../../redux/actions/partner';
 import InputAuth from '../../../../shared/InputAuth/InputAuth';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 
-interface PartnerModalProps {
+interface ModalControlProps {
     visable: boolean;
     setVisable: (visable: boolean) => void;
+    title: string;
+    description: string;
+    setTitle: (title: string) => void;
+    setDescription: (descr: string) => void;
+    setImg: (img: any) => void;
+    fetchAdd: () => void;
 }
 
-const PartnerModal: FC<PartnerModalProps> = ({ visable, setVisable }) => {
-    const dispatch = useDispatch();
-    const [title, setTitle] = useState<any>('');
-    const [description, setDescription] = useState<any>('');
-    const [img, setImg] = useState<any>(null);
-
-    const fetchAddPartner = () => {
-        dispatch(addPartner(title, description, img));
-        setDescription('')
-        setTitle('')
-        setImg(null)
-        setVisable(false);
-    };
+const ModalControl: FC<ModalControlProps> = ({
+    visable,
+    setVisable,
+    title,
+    description,
+    setTitle,
+    setDescription,
+    setImg,
+    fetchAdd,
+}) => {
 
     return (
         <div
             onClick={() => setVisable(false)}
-            className={cn('partner-modal', {
+            className={cn('modal-control', {
                 active: visable,
             })}>
-            <div onClick={(e) => e.stopPropagation()} className="partner-modal__content">
-                <div className="partner-modal__header">
-                    <h3 className="partner-modal__title">Добавление программы</h3>
-                    <button onClick={() => setVisable(false)} className="partner-modal__close">
+            <div onClick={(e) => e.stopPropagation()} className="modal-control__content">
+                <div className="modal-control__header">
+                    <h3 className="modal-control__title">Добавление программы</h3>
+                    <button onClick={() => setVisable(false)} className="modal-control__close">
                         <GrClose />
                     </button>
                 </div>
-                <div className="partner-modal__main">
-                    <label className="partner-modal__label">
+                <div className="modal-control__main">
+                    <label className="modal-control__label">
                         <span>Заголовок</span>
                         <InputAuth
                             value={title}
@@ -48,7 +51,7 @@ const PartnerModal: FC<PartnerModalProps> = ({ visable, setVisable }) => {
                             setData={setTitle}
                         />
                     </label>
-                    <label className="partner-modal__label">
+                    <label className="modal-control__label">
                         <span>Описание</span>
                         <textarea
                             onChange={(e) => setDescription(e.target.value)}
@@ -56,17 +59,17 @@ const PartnerModal: FC<PartnerModalProps> = ({ visable, setVisable }) => {
                             value={description}
                         />
                     </label>
-                    <label className="partner-modal__label">
+                    <label className="modal-control__label">
                         <span>Прикрепить изображение</span>
                         <input
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                 setImg(e.target.files?.[0])
                             }
-                            className="partner-modal__add-image"
+                            className="modal-control__add-image"
                             type="file"
                         />
                     </label>
-                    <button onClick={fetchAddPartner} className="partner-modal__add">
+                    <button onClick={fetchAdd} className="modal-control__add">
                         Добавить
                     </button>
                 </div>
@@ -75,4 +78,4 @@ const PartnerModal: FC<PartnerModalProps> = ({ visable, setVisable }) => {
     );
 };
 
-export default PartnerModal;
+export default ModalControl;

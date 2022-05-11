@@ -1,6 +1,5 @@
-
 export interface IUser {
-    id: number
+    id: number;
     email: string;
     password: string;
     avatar: string;
@@ -16,12 +15,12 @@ export interface IError {
     };
 }
 
-export interface IPartnerItem {
-    id: number
-    title: string
-    description: string
-    image: string
-    date: string
+export interface IControlItem {
+    _id: string;
+    title: string;
+    description: string;
+    image: string;
+    date: string;
 }
 
 export enum BurgerItemName {
@@ -39,7 +38,7 @@ export enum BurgerItemLink {
     HOME = '/',
     CATALOG = '/games',
     DISCOUNT = '/discount',
-    GUARANTEE = '/about',
+    GUARANTEE = '/garant',
     SUPPORT = '/support',
     REVIEWS = '/reviews',
     BONUS_PROGRAM = '/bonus',
@@ -84,10 +83,33 @@ export type ProfileMunu = {
     link: ProfileMunuLink.SETTINGS | ProfileMunuLink.PARTNER | ProfileMunuLink.PURCHASE;
 };
 
-export enum AdminContentMenuName {
+export enum InfoMenuName {
+    DISCOUNT = 'Накопительная скидка',
+    REVIEWS = 'Отзывы',
+    GARANT = 'Гарантии',
     PARTNER = 'Партнерская программа',
 }
 
+export enum InfoMenuLink {
+    DISCOUNT = '/discount',
+    REVIEWS = '/reviews',
+    GARANT = '/garant',
+    PARTNER = '/partner',
+}
+
+export type InfoMenuAr = {
+    name: InfoMenuName.DISCOUNT | InfoMenuName.REVIEWS | InfoMenuName.GARANT | InfoMenuName.PARTNER;
+    link: InfoMenuLink.DISCOUNT | InfoMenuLink.REVIEWS | InfoMenuLink.GARANT | InfoMenuLink.PARTNER;
+};
+
+export enum AdminContentMenuName {
+    PARTNER = 'Партнерская программа',
+    GARANT = 'Гарантии',
+}
+
 export type AdminMenuAside = {
-    content: [{ name: AdminContentMenuName.PARTNER; img: any }];
+    content: [
+        { name: AdminContentMenuName.PARTNER; img: any },
+        { name: AdminContentMenuName.GARANT; img: any },
+    ];
 };

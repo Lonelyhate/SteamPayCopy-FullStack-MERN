@@ -1,0 +1,22 @@
+@import '../../../../../styles/variables.scss';
+
+.partner-link{
+    width: 100%;
+    padding: 25px 0;
+    background-color: $colorYellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__text{
+        font-size: 14px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        span{
+            background-color: $grayColor;
+            padding: 4px 10px;
+            transform: translateY(2px);
+            margin-left: 10px;
+        }
+    }
+}

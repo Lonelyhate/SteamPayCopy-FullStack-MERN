@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypedSelector } from './hooks/useTypedSelector';
-import AdminMenu from './pages/AdminPage/AdminMenu/AdminMenu';
 import AdminPage from './pages/AdminPage/AdminPage';
 import AuthPage from './pages/authPage/AuthPage';
 import HomePage from './pages/HomePage/HomePage';
@@ -12,10 +11,12 @@ import Header from './shared/Header/Header';
 import {
     ADMIN_ROUTE,
     AUTH_ROUTE,
+    GARANT_ROUTE,
     HOME_ROTE,
     PROFILE_ROUTE,
     REGISTRATION_ROUTE,
 } from './utils/constsPath';
+import GarantPage from './pages/GarantPage/GarantPage';
 
 function App() {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
             <Header />
             <Routes>
                 <Route path={HOME_ROTE} element={<HomePage />} />
+                <Route path={GARANT_ROUTE} element={<GarantPage/>} />
                 {!isAuth ? (
                     <>
                         <Route path={AUTH_ROUTE} element={<AuthPage />} />
